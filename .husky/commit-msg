@@ -1,0 +1,2 @@
+# Проверка формата сообщения коммита (Conventional Commits)
+npx --no -- commitlint --edit "$1"

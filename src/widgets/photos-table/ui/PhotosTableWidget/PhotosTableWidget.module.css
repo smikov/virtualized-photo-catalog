@@ -1,0 +1,93 @@
+/*
+ * Виртуализированная таблица.
+ *
+ * Важно: у table/thead/tbody/tr переопределён display (block/flex), иначе абсолютное
+ * позиционирование строк не работает. Из-за этого браузер может потерять неявные
+ * табличные роли — они заданы явно в разметке (PhotosTableWidget.tsx).
+ * Стили миниатюры — в Thumbnail/Thumbnail.module.css.
+ */
+.container {
+  height: 600px;
+  overflow: auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  display: block;
+}
+
+.head {
+  display: block;
+  position: sticky;
+  top: 0;
+  background: var(--bg-primary);
+  z-index: 1;
+}
+
+.headRow {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.headCell {
+  padding: var(--space-md);
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  box-sizing: border-box;
+}
+
+.body {
+  display: block;
+  position: relative;
+}
+
+.row {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.row:hover {
+  background: var(--surface-hover);
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+  overflow: hidden;
+}
+
+.titleCell {
+  flex: 1;
+  color: var(--text-primary);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.empty {
+  padding: var(--space-lg);
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.counter {
+  margin: var(--space-sm) 0 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}

@@ -1,0 +1,57 @@
+/*
+ * Базовая кнопка приложения.
+ *
+ * Цвета — только из токенов темы (ADR 013): `--on-accent` для текста на акцентном фоне,
+ * `--error-hover` для опасного варианта.
+ */
+.button {
+  padding: 0.5rem var(--space-md);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.primary {
+  composes: button;
+  background: var(--accent-color);
+  color: var(--on-accent);
+}
+
+.primary:hover {
+  background: var(--accent-hover);
+}
+
+.danger {
+  composes: button;
+  background: var(--error-color);
+  color: var(--on-accent);
+}
+
+.danger:hover {
+  background: var(--error-hover);
+}
+
+.secondary {
+  composes: button;
+  background: transparent;
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.secondary:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+/* Крупный размер — для экрана ошибки, где кнопки основные */
+.lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}

@@ -1,0 +1,69 @@
+/*
+ * Поле поиска без UI-библиотек: размеры и цвета заданы токенами,
+ * :focus-visible даёт видимую рамку при навигации с клавиатуры.
+ */
+.wrapper {
+  margin-bottom: var(--space-md);
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem var(--space-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--text-secondary);
+}
+
+.input:focus-visible {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px var(--highlight-bg);
+}
+
+/* Обёртка нужна, чтобы кнопка очистки позиционировалась относительно поля */
+.field {
+  position: relative;
+}
+
+/* Своя кнопка очистки вместо встроенной в type="search": её поведение различается в браузерах */
+.field input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.clear {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.clear:hover {
+  background: var(--control-hover);
+  color: var(--text-primary);
+}
+
+.clear:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 1px;
+}

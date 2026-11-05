@@ -1,0 +1,18 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":dependencyDashboard"],
+  "timezone": "Europe/Moscow",
+  "schedule": ["before 6am on monday"],
+  "packageRules": [
+    {
+      "description": "Патчи и минорные обновления — одним PR раз в неделю",
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "зависимости (patch/minor)"
+    },
+    {
+      "description": "Мажорные обновления — отдельными PR, их ревьюируем руками",
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
+    }
+  ]
+}

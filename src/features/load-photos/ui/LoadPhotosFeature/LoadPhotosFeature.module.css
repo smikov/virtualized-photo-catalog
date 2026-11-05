@@ -1,0 +1,121 @@
+.panel {
+  padding: var(--space-md);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-md);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+  font-size: 0.95rem;
+}
+
+.value {
+  color: var(--text-primary);
+}
+
+/* Полоса прогресса загрузки */
+.progressTrack {
+  width: 100%;
+  height: 8px;
+  background: var(--border-color);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-bottom: var(--space-sm);
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--accent-color);
+  transition: width 0.2s linear;
+}
+
+/*
+ * Неопределённый прогресс: сервер не сообщил размер ответа (chunked/gzip),
+ * поэтому честный процент посчитать нельзя — показываем бегущую полосу.
+ */
+.progressFillIndeterminate {
+  width: 40%;
+  animation: slide 1.2s ease-in-out infinite;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(250%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progressFillIndeterminate {
+    animation: none;
+    width: 100%;
+    opacity: 0.4;
+  }
+}
+
+/* Блок состояния: «ещё не загружали», «отменили», «ошибка» */
+.notice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  margin-top: var(--space-sm);
+  text-align: center;
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--surface-subtle);
+}
+
+.noticeError {
+  border-color: var(--border-error-subtle);
+  background: var(--surface-error-subtle);
+}
+
+.noticeIcon {
+  display: flex;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xs);
+}
+
+.noticeError .noticeIcon {
+  color: var(--error-color);
+}
+
+.noticeTitle {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.noticeText {
+  margin: 0;
+  max-width: 46ch;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.noticeError .noticeText {
+  color: var(--error-text-muted);
+  overflow-wrap: anywhere;
+}
+
+/* Кнопка действия в блоке состояния: чуть отступает от текста */
+.notice button {
+  margin-top: var(--space-xs);
+}
+
+.successMessage {
+  margin: var(--space-sm) 0 0;
+  color: var(--success-color);
+}

@@ -1,0 +1,24 @@
+# Зависимости и артефакты пересобираются внутри образа
+node_modules
+dist
+coverage
+docs
+
+# Git и локальные настройки
+.git
+.gitignore
+.husky
+.github
+
+# Секреты и локальное окружение
+.env
+.env.*
+!.env.example
+
+# Документация и IDE-файлы не нужны для сборки
+docs
+adr
+README.md
+.vscode
+.idea
+*.log

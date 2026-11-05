@@ -1,0 +1,80 @@
+/*
+ * Миниатюра ячейки таблицы: шиммер на время загрузки, заглушка для битой картинки.
+ * Стили живут своей папкой, а не в CSS таблицы: компонент не должен зависеть
+ * от стилей соседнего компонента (ADR 023).
+ */
+.thumbnailLink {
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 50px;
+  line-height: 0;
+}
+
+.thumbnail,
+.thumbnailPending {
+  display: block;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    opacity 0.2s ease;
+}
+
+/* Картинка уже занимает место, но не видна, пока на её месте шиммер */
+.thumbnailPending {
+  opacity: 0;
+}
+
+/* Заглушка на время загрузки миниатюры */
+.thumbnailSkeleton {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(
+    90deg,
+    var(--shimmer-from) 25%,
+    var(--shimmer-mid) 37%,
+    var(--shimmer-from) 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+.thumbnail:hover {
+  transform: scale(1.06);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thumbnailSkeleton {
+    animation: none;
+  }
+
+  .thumbnail,
+  .thumbnailPending {
+    transition: none;
+  }
+}
+
+.thumbnailFallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-align: center;
+}

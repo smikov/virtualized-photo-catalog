@@ -1,0 +1,14 @@
+services:
+  web:
+    build:
+      context: .
+      # Облегчённая сборка для демонстрации и проверки: бандл собирается без typecheck
+      # и минификации, раздаётся через стабильный nginx (без HMR-перезагрузок).
+      # Значения VITE_* вшиваются в бандл при сборке (build args), environment контейнера на них не влияет.
+      args:
+        VITE_API_URL: https://jsonplaceholder.typicode.com/photos
+        VITE_PHOTOS_AUTOLOAD: "off"
+        VITE_API_ARTIFICIAL_DELAY_MS: "100"
+    ports:
+      - "3000:80"
+    restart: unless-stopped

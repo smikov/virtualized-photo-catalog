@@ -1,0 +1,45 @@
+/*
+ * Оформление экрана ошибки: центрированная колонка, технические детали
+ * моноширинным шрифтом, две кнопки — «попробовать снова» и «перезагрузить».
+ */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: var(--space-md);
+  color: var(--error-color);
+}
+
+.description {
+  max-width: 600px;
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.details {
+  padding: var(--space-md);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  max-width: 800px;
+  width: 100%;
+  overflow-x: auto;
+  text-align: left;
+  font-size: 0.85rem;
+  color: var(--error-color);
+  margin-bottom: 1.5rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+}

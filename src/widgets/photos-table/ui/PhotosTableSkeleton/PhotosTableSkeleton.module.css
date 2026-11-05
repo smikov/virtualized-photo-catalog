@@ -1,0 +1,71 @@
+/*
+ * Скелетон таблицы: те же размеры, что у настоящих строк (70px), чтобы интерфейс
+ * не «прыгал» после загрузки. Шиммер уважает prefers-reduced-motion.
+ */
+.container {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  padding: var(--space-sm) var(--space-md);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  height: 70px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.cellShort,
+.thumbnail,
+.cellLong {
+  display: block;
+  background: linear-gradient(
+    90deg,
+    var(--shimmer-from) 25%,
+    var(--shimmer-mid) 37%,
+    var(--shimmer-from) 63%
+  );
+  background-size: 400% 100%;
+  border-radius: var(--radius-sm);
+  animation: shimmer 1.4s ease infinite;
+}
+
+.cellShort {
+  width: 40px;
+  height: 14px;
+  flex: none;
+}
+
+.thumbnail {
+  width: 50px;
+  height: 50px;
+  flex: none;
+}
+
+.cellLong {
+  flex: 1;
+  height: 14px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cellShort,
+  .thumbnail,
+  .cellLong {
+    animation: none;
+  }
+}
