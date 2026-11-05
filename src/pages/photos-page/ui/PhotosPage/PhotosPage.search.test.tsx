@@ -42,7 +42,9 @@ describe('PhotosPage: поиск и сброс', () => {
     })
     expect(screen.getByText('Найдено записей: 1 из 3')).toBeInTheDocument()
 
-    fireEvent.click(screen.getByRole('button', { name: 'Сбросить поиск' }))
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Сбросить поиск' }))
+    })
 
     expect(screen.getByText('Найдено записей: 3 из 3')).toBeInTheDocument()
     expect(input).toHaveValue('')
@@ -62,7 +64,9 @@ describe('PhotosPage: поиск и сброс', () => {
     expect(screen.getByText('Найдено записей: 1 из 3')).toBeInTheDocument()
 
     input.value = ''
-    fireEvent(input, new Event('search'))
+    await act(async () => {
+      fireEvent(input, new Event('search'))
+    })
 
     expect(screen.getByText('Найдено записей: 3 из 3')).toBeInTheDocument()
   })
